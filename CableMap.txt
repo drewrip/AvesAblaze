@@ -1,4 +1,5 @@
-(0):
+(0): <Module That is plugged in>
+  port: <port it's plugged into>
 (1):
 (2):
 (3):

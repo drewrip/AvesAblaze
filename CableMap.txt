@@ -1,8 +1,7 @@
-Hub0: Core device controller
-  slot1:
-Hub1:
-Hub2:
-Hub3:
-Hub4:
-Hub5:
-Hub6:
+(0):
+(1):
+(2):
+(3):
+(4):
+(5):
+(6):

@@ -1,8 +1,10 @@
-(0): <Module That is plugged in>
-  port: <port it's plugged into>
-(1):
-(2):
-(3):
-(4):
-(5):
-(6):
+(0): <Core Device Controller>
+(1): <Motor Controller 1>
+  Enc1: <Left Wheel Motor>
+  Enc2: <Right Wheel Motor>
+(2): <Motor Controller 2>
+(3): <Servo Controller 1>
+  Port1: <Shooter Arm>
+(4): <empty>
+(5): <empty>
+(6): <empty>

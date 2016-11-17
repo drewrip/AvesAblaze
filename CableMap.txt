@@ -4,7 +4,7 @@
   Enc1: <Left Wheel Motor>
   Enc2: <Right Wheel Motor>
 (2): <Motor Controller 2>
-  Motor1: <Ball Collector>
+  Motor1: <Autobroom>
   Motor2: <Ball Shooter>
 (3): <Servo Controller 1>
   Port1: <Shooter Arm>

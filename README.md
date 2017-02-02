@@ -1,4 +1,4 @@
 # AvesAblaze
 
 
-Code Repository for the FTC 2016-2017 Season
+Code Repository for FTC team 12056 Aves Ablaze

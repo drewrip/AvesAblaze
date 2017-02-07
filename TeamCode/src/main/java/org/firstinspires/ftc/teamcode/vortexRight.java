@@ -77,6 +77,7 @@ public class vortexRight extends LinearOpMode {
             robot.autobroom.setPower(-1);
             if(!opModeIsActive())
                 break;
+            //wait two seconds
             try {
                 TimeUnit.SECONDS.sleep(2);
             } catch (InterruptedException e) {

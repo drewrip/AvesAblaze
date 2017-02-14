@@ -36,7 +36,6 @@ public class HardwarePushbot
 
     /* local OpMode members. */
     HardwareMap hwMap           =  null;
-    private ElapsedTime period  = new ElapsedTime();
 
     /* Constructor */
     public HardwarePushbot(){

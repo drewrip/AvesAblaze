@@ -19,9 +19,72 @@ public class ballLeft extends LinearOpMode {
 
     double startPositionL = 0;
     double startPositionR = 0;
-
+    public static void moveForward(double seconds){
+        robot.rightMotor.setPower(1);
+        robot.leftMotor.setPower(1);
+        try {
+            TimeUnit.SECONDS.sleep(seconds);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        robot.rightMotor.setPower(0);
+        robot.leftMotor.setPower(0);
+    }
+    public static void moveBackwards(double seconds){
+        robot.rightMotor.setPower(-1);
+        robot.leftMotor.setPower(-1);
+        try {
+            TimeUnit.SECONDS.sleep(seconds);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        robot.rightMotor.setPower(0);
+        robot.leftMotor.setPower(0);
+    }    
+    public static void turnRight(double seconds){
+        robot.rightMotor.setPower(1);
+        robot.leftMotor.setPower(-1);
+        try {
+            TimeUnit.SECONDS.sleep(seconds);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        robot.rightMotor.setPower(0);
+        robot.leftMotor.setPower(0);
+    }    
+    public static void moveForward(double seconds){
+        robot.rightMotor.setPower(-1);
+        robot.leftMotor.setPower(1);
+        try {
+            TimeUnit.SECONDS.sleep(seconds);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        robot.rightMotor.setPower(0);
+        robot.leftMotor.setPower(0);
+    }    
+    public static void setPosition(Servo srvo, double position){
+        robot.srvo.setPosition(position);
+    }
+    public static void wait(double seconds){
+        try {
+            TimeUnit.SECONDS.sleep(seconds);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void turnMotorClockwise(DcMotor mtr){
+        mtr.setPower(1);
+    }
+    public static void turnMotorCounterClockwise(DcMotor mtr){
+        mtr.setPower(-1);
+    }
+    public static void stopMotor(DcMotor mtr){
+        mtr.setPower(0);
+    }
     @Override
     public void runOpMode() {
+          
 
         robot.init(hardwareMap);
         //initialize servo

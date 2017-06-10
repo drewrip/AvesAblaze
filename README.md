@@ -8,4 +8,6 @@ Java and FTC library: https://docs.google.com/document/d/1jA1CdhneleULKm7qqXxieb
 
 Information on variable types: https://www.tutorialspoint.com/java/java_variable_types.htm
 
-Color Sensor Code:https://ftc-tricks.com/overview-color-sensor/
+Color Sensor Code:http://ftctechnh.github.io/ftc_app/doc/javadoc/index.html
+
+Range Sensor Code:

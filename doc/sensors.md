@@ -80,6 +80,10 @@
   import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cGyro;
   import com.qualcomm.robotcore.hardware.Gyroscope;
   import com.qualcomm.robotcore.hardware.IntegratingGyroscope;
+  import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+  import org.firstinspires.ftc.robotcore.external.navigation.AngularVelocity;
+  import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
+  import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
   ```
   
   ### Initialize a gyro sensor objects:

@@ -32,3 +32,31 @@
   //Returns the blue value
   colorSensor.blue();
   ```
+
+# Range Sensor
+  
+  ### Import the range sensor class and other dependencies:
+  
+  ```java
+  import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
+  import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
+  ```
+  
+  ### Initialize the range sensor object:
+  
+  ```java
+  ModernRoboticsI2cRangeSensor rangeSensor;
+  ```
+  
+  #### Get raw optical data:
+  
+  ```java
+  rangeSensor.rawUltrasonic();
+  ```
+  
+  #### Get the distance in CM:
+  
+  ```java
+  rangeSensor.getDistance(DistanceUnit.CM);
+  ```
+  

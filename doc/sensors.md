@@ -12,12 +12,12 @@
   colorSensor = hardwareMap.colorSensor.get("sensor_color");
   ```
   
-  #### Enable LED
+  #### Enable LED:
   ```java
   colorSensor.enableLed(boolean);
   ```
   
-  #### Get Colors
+  #### Get Colors:
   ```java
   
   //Returns the alpha value
@@ -54,9 +54,46 @@
   rangeSensor.rawUltrasonic();
   ```
   
+  #### Get raw optical data in CM:
+  
+  ```java
+  rangeSensor.cmOptical();
+  ```
+  
+  #### Get raw ultrasonic data:
+  
+  ```java
+  rangeSensor.rawUltrasonic();
+  ```
+  
   #### Get the distance in CM:
   
   ```java
   rangeSensor.getDistance(DistanceUnit.CM);
   ```
+
+# Gyro Sensor
   
+  ### Import the gyro sensor class and dependencies:
+  
+  ```java
+  import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cGyro;
+  import com.qualcomm.robotcore.hardware.Gyroscope;
+  import com.qualcomm.robotcore.hardware.IntegratingGyroscope;
+  ```
+  
+  ### Initialize a gyro sensor objects:
+  
+  ```java
+  IntegratingGyroscope gyro;
+  ModernRoboticsI2cGyro modernRoboticsI2cGyro;
+  
+  // During implementation:
+  gyro = (IntegratingGyroscope)hardwareMap.get(ModernRoboticsI2cGyro.class, "gyro");
+  ```
+  
+  #### Calibrate the gyro sensor:
+  
+  ```java
+  modernRoboticsI2cGyro.calibrate();
+  ```

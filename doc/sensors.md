@@ -2,13 +2,13 @@
 
   Import the color sensor class:
   
-  '''java
+  ```java
   import com.qualcomm.robotcore.hardware.ColorSensor;
-  '''
+  ```
   
   Initialize a color sensor object:
   
-  '''java
+  ```java
   colorSensor = hardwareMap.colorSensor.get("sensor_color");
-  '''
+  ```
   

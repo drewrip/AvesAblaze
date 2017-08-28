@@ -13,3 +13,5 @@ Color Sensor Code:http://ftctechnh.github.io/ftc_app/doc/javadoc/index.html
 Range Sensor Code Examples:http://modernroboticsinc.com/range-sensor
 
 FTC information: https://github.com/ftctechnh/ftc_app
+
+Powerpoint for Superhelpful Introductary Information about Programming and the Robot:http://paws.kettering.edu/~webe3546/FTCJavaProgramming.pdf

@@ -24,7 +24,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 public class Tele-op_Template extends LinearOpMode {
 
     /* Declare OpMode members. */
-    HardwarePushbot robot           = new HardwarePushbot();   // Use a Pushbot's hardware
+    HardwarePushbot robot           = new HardwarePushbot1();   // Use a Pushbot's hardware
 
 
     @Override

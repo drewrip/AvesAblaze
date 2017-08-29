@@ -1,38 +1,38 @@
-#Java Keywords
-###Variable Types
-#####double- create a decimal number variable
-#####int- create an integer variable
-#####String- create a text variable
-#####Boolean- create a true/false variable
+# Java Keywords  
+### Variable Types  
+##### double- create a decimal number variable  
+##### int- create an integer variable  
+##### String- create a text variable  
+##### Boolean- create a true/false variable  
+  
+### Operators  
+##### *   multiplication  
+##### /   division  
+##### +   addition  
+##### -   Subtraction  
+##### %   modulo (google it)  
+##### =   assignment  
+  
+### Conditional Statements
+##### == is equal to
+##### != is not equal to
+##### < is less than
+##### \> is greater than
+##### <= is less than or equal to
+##### \>= is greater than or equal to
 
-Operators
-*   multiplication
-/    division
-addition
-Subtraction
-    %   modulo (google it)
-    =    assignment
+### Boolean Operators
+##### &&-and
+##### ||-or
 
-Conditional Statements
-== is equal to
-!= is not equal to
-< is less than
-\> is greater than
-<= is less than or equal to
-\>= is greater than or equal to
-
-Boolean Operators
-&&-and
-||-or
-
-Logic and Loops
+### Logic and Loops
+'''java
 if(condition to test for){
 	//do this
 }
 else{
 	//do this
-}
-
+}'
 
 while (condition is true){
 	//do this over and over again
@@ -41,7 +41,7 @@ while (condition is true){
 
     for (int i=0; i<number; i++){
 	//do this for “number” amount of times
-}
+}'
 Other useful code:
 // this is a comment
 

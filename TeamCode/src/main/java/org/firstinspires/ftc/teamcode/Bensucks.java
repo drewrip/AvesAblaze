@@ -25,13 +25,13 @@ public class Autonomous_Template extends LinearOpMode {
 
         
         waitForStart();
-        robot."rightMotor".setDirection(DcMotor.Direction.FORWARD);
-        robot."leftMotor".setDirection(DcMotor.Direction.FORWARD);
-        robot."rightMotor".setPower(1);
-        robot."leftMotor".setPower(1);
+        robot.rightMotor.setDirection(DcMotor.Direction.FORWARD);
+        robot.leftMotor.setDirection(DcMotor.Direction.FORWARD);
+        robot.rightMotor.setPower(1);
+        robot.leftMotor.setPower(1);
         sleep(1000);
-           robot."rightMotor".setPower(0);
-        robot."leftMotor".setPower(0);
+           robot.rightMotor.setPower(0);
+        robot.leftMotor.setPower(0);
         
         
 

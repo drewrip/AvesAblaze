@@ -29,7 +29,13 @@ public class Arushi extends LinearOpMode {
        
        robot.rightMotor.setPower(1);
        robot.leftMotor.setPower(1);
-       TimeUnit.SECONDS.sleep(2);
+        
+       try {
+           TimeUnit.SECONDS.sleep(4);
+       } catch (InterruptedException e) {
+           e.printStackTrace();
+       }
+        
        robot.rightMotor.setPower(0);
        robot.leftMotor.setPower(0);
        

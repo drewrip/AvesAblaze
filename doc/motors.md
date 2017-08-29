@@ -51,7 +51,8 @@
    ```
    
    #### Set the position of the servo: ####
-   
+  
    ```java
+   // Position 0.00 - 1.00
    servo.setPosition(double position);
    ```

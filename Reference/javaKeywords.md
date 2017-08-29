@@ -26,13 +26,13 @@
 ##### ||-or
 
 ### Logic and Loops
-'''java
+```java
 if(condition to test for){
 	//do this
 }
 else{
 	//do this
-}'
+}
 
 while (condition is true){
 	//do this over and over again
@@ -41,20 +41,20 @@ while (condition is true){
 
     for (int i=0; i<number; i++){
 	//do this for “number” amount of times
-}'''
+}```
 ## Other useful code:
-'''java
+```java
 // this is a comment
-'''
 
 
 {
 	// this is a block
 }
+```
 ###### NOTE: Put a semicolon after lines of code that are not the start or end of a block
 
 Wait x seconds:
-
+``` java
 try {
 
 
@@ -70,7 +70,7 @@ try {
 
 
        }
-
+```
 
 ### x++;   add one to the variable x
 ### x--; subtract one from the variable x

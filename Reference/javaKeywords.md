@@ -41,7 +41,8 @@ while (condition is true){
 
     for (int i=0; i<number; i++){
 	//do this for “number” amount of times
-}```
+}
+```
 ## Other useful code:
 ```java
 // this is a comment
@@ -56,21 +57,11 @@ while (condition is true){
 Wait x seconds:
 ``` java
 try {
-
-
-
-
            TimeUnit.SECONDS.sleep(x);
-
-
        } catch (InterruptedException e) {
-
-
            e.printStackTrace();
-
-
        }
 ```
 
-### x++;   add one to the variable x
-### x--; subtract one from the variable x
+##### x++;   add one to the variable x
+##### x--; subtract one from the variable x

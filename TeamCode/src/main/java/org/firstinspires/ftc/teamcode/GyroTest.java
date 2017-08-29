@@ -16,50 +16,17 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngularVelocity;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 
-@TeleOp(name = "GyroTest", group = "SensorTests")
-@Disabled
+@TeleOp(name = "GyroTest", group = "Pushbot")
+//@Disabled
 public class GyroTest extends LinearOpMode {
+    HardwarePushbot1 robot = new HardwarePushbot1();
 
-    public DcMotor leftMotor   = null;
-    public DcMotor  rightMotor  = null;
-    public DcMotor  autobroom    = null;
-    public Servo collector   = null;
-
-    public static final double MID_SERVO       =  0.5 ;
-    public static final double ARM_UP_POWER    =  0.45 ;
-    public static final double ARM_DOWN_POWER  = -0.45 ;
 
     /* local OpMode members. */
-    HardwareMap hwMap           =  null;
     private ElapsedTime period  = new ElapsedTime();
 
     /* Initialize standard Hardware interfaces */
-    public void init(HardwareMap ahwMap) {
-        // Save reference to Hardware map
-        hwMap = ahwMap;
 
-        // Define and Initialize Motors
-        leftMotor   = hwMap.dcMotor.get("left_drive");
-        rightMotor  = hwMap.dcMotor.get("right_drive");
-        autobroom    = hwMap.dcMotor.get("autobroom");
-        leftMotor.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
-        rightMotor.setDirection(DcMotor.Direction.REVERSE);// Set to FORWARD if using AndyMark motors
-
-        // Set all motors to zero power
-        leftMotor.setPower(0);
-        rightMotor.setPower(0);
-        autobroom.setPower(0);
-
-        // Set all motors to run without encoders.
-        // May want to use RUN_USING_ENCODERS if encoders are installed.
-        leftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        rightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        autobroom.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-
-        // Define and initialize ALL installed servos.
-        collector = hwMap.servo.get("left_hand");
-        collector.setPosition(MID_SERVO);
-    }
 
     /***
      *
@@ -69,22 +36,6 @@ public class GyroTest extends LinearOpMode {
      *
      * @param periodMs  Length of wait cycle in mSec.
      */
-    public void waitForTick(long periodMs) {
-
-        long  remaining = periodMs - (long)period.milliseconds();
-
-        // sleep for the remaining portion of the regular cycle period.
-        if (remaining > 0) {
-            try {
-                Thread.sleep(remaining);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
-        }
-
-        // Reset the cycle clock for the next pass.
-        period.reset();
-    }
 
     IntegratingGyroscope gyro;
     ModernRoboticsI2cGyro modernRoboticsI2cGyro;
@@ -100,20 +51,17 @@ public class GyroTest extends LinearOpMode {
 
         // Get a reference to a Modern Robotics gyro object. We use several interfaces
         // on this object to illustrate which interfaces support which functionality.
-        modernRoboticsI2cGyro = hardwareMap.get(ModernRoboticsI2cGyro.class, "gyro");
-        gyro = (IntegratingGyroscope)modernRoboticsI2cGyro;
         // If you're only interested int the IntegratingGyroscope interface, the following will suffice.
         // gyro = hardwareMap.get(IntegratingGyroscope.class, "gyro");
         // A similar approach will work for the Gyroscope interface, if that's all you need.
-
+        robot.init(hardwareMap);
         // Start calibrating the gyro. This takes a few seconds and is worth performing
         // during the initialization phase at the start of each opMode.
-        telemetry.log().add("Gyro Calibrating. Do Not Move!");
-        modernRoboticsI2cGyro.calibrate();
+        robot.gyro.calibrate();
 
         // Wait until the gyro calibration is complete
         timer.reset();
-        while (!isStopRequested() && modernRoboticsI2cGyro.isCalibrating())  {
+        while (!isStopRequested() && robot.gyro.isCalibrating())  {
             telemetry.addData("calibrating", "%s", Math.round(timer.seconds())%2==0 ? "|.." : "..|");
             telemetry.update();
             sleep(50);
@@ -128,31 +76,78 @@ public class GyroTest extends LinearOpMode {
 
         // Loop until we're asked to stop
         while (opModeIsActive())  {
+            if(gamepad2.left_bumper){   //making left bumper move servo back
+                robot.collector.setPosition(0.18);
+            }
+            if(gamepad2.right_bumper){  //making right bumper move servo forward
+                robot.collector.setPosition(0.28);
+            }
+            if(gamepad1.left_bumper){   //making left bumper move servo back
+                robot.collector.setPosition(0.18);
+            }
+            if(gamepad1.right_bumper) { //Making right bumper move servo forward
+                robot.collector.setPosition(0.28);
+            }
+            if (gamepad2.x)  {  //makes "x" turn autobroom clockwise
+                robot.autobroom.setPower(-1);}
 
+            if (gamepad1.x) {   //makes "x" turn autobroom clockwise
+                robot.autobroom.setPower(-1);
+            }
+            if (gamepad2.a)  {  //makes "a" turn autobroom counter clockwise
+                robot.autobroom.setPower(1);
+            }
+
+            if (gamepad1.a) {   //makes "a" turn autobroom counter clockwise
+                robot.autobroom.setPower(1);
+            }
+            if (gamepad2.b)  {  //makes "b" turn off autobroom
+                robot.autobroom.setPower(0);
+            }
+
+            if (gamepad1.b) {   //makes "b" turn off autobroom
+                robot.autobroom.setPower(0);
+            }
+
+            if (gamepad2.y) {   //makes "y" shoot ball
+                robot.collector.setPosition(0.28);
+                robot.autobroom.setPower(1);
+            }
+            if (gamepad1.y) {   //makes "y" shoot ball
+                robot.collector.setPosition(0.28);
+                robot.autobroom.setPower(1);
+            }
+            double left=0;
+            double right=0;
+            left = -gamepad1.left_stick_y; //reset power values
+            right = -gamepad1.right_stick_y;
+
+            robot.rightMotor.setPower(right);   //sets power
+            robot.leftMotor.setPower(left);
             // If the A and B buttons are pressed just now, reset Z heading.
             curResetState = (gamepad1.a && gamepad1.b);
             if (curResetState && !lastResetState) {
-                modernRoboticsI2cGyro.resetZAxisIntegrator();
+                robot.gyro.resetZAxisIntegrator();
             }
             lastResetState = curResetState;
 
             // The raw() methods report the angular rate of change about each of the
             // three axes directly as reported by the underlying sensor IC.
-            int rawX = modernRoboticsI2cGyro.rawX();
-            int rawY = modernRoboticsI2cGyro.rawY();
-            int rawZ = modernRoboticsI2cGyro.rawZ();
-            int heading = modernRoboticsI2cGyro.getHeading();
-            int integratedZ = modernRoboticsI2cGyro.getIntegratedZValue();
+            int rawX = robot.gyro.rawX();
+            int rawY = robot.gyro.rawY();
+            int rawZ = robot.gyro.rawZ();
+            int heading = robot.gyro.getHeading();
+            int integratedZ = robot.gyro.getIntegratedZValue();
 
             // Read dimensionalized data from the gyro. This gyro can report angular velocities
             // about all three axes. Additionally, it internally integrates the Z axis to
             // be able to report an absolute angular Z orientation.
-            AngularVelocity rates = gyro.getAngularVelocity(AngleUnit.DEGREES);
-            float zAngle = gyro.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES).firstAngle;
+            AngularVelocity rates = robot.gyro.getAngularVelocity(AngleUnit.DEGREES);
+            float zAngle = robot.gyro.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES).firstAngle;
 
             // Read administrative information from the gyro
-            int zAxisOffset = modernRoboticsI2cGyro.getZAxisOffset();
-            int zAxisScalingCoefficient = modernRoboticsI2cGyro.getZAxisScalingCoefficient();
+            int zAxisOffset = robot.gyro.getZAxisOffset();
+            int zAxisScalingCoefficient = robot.gyro.getZAxisScalingCoefficient();
 
             telemetry.addLine()
                     .addData("dx", formatRate(rates.xRotationRate))

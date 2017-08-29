@@ -14,23 +14,23 @@
   
   #### Enable LED:
   ```java
-  colorSensor.enableLed(boolean);
+  robot.colorSensor.enableLed(boolean);
   ```
   
   #### Get Colors:
   ```java
   
   //Returns the alpha value
-  colorSensor.alpha();
+  robot.colorSensor.alpha();
   
   //Returns the red value
-  colorSensor.red();
+  robot.colorSensor.red();
   
   //Returns the green value
-  colorSensor.green();
+  robot.colorSensor.green();
   
   //Returns the blue value
-  colorSensor.blue();
+  robot.colorSensor.blue();
   ```
 
 # Range Sensor
@@ -51,25 +51,25 @@
   #### Get raw optical data:
   
   ```java
-  rangeSensor.rawUltrasonic();
+  robot.rangeSensor.rawUltrasonic();
   ```
   
   #### Get raw optical data in CM:
   
   ```java
-  rangeSensor.cmOptical();
+  robot.rangeSensor.cmOptical();
   ```
   
   #### Get raw ultrasonic data:
   
   ```java
-  rangeSensor.rawUltrasonic();
+  robot.rangeSensor.rawUltrasonic();
   ```
   
   #### Get the distance in CM:
   
   ```java
-  rangeSensor.getDistance(DistanceUnit.CM);
+  robot.rangeSensor.getDistance(DistanceUnit.CM);
   ```
 
 # Gyro Sensor
@@ -93,11 +93,11 @@
   ModernRoboticsI2cGyro modernRoboticsI2cGyro;
   
   // During implementation:
-  gyro = (IntegratingGyroscope)hardwareMap.get(ModernRoboticsI2cGyro.class, "gyro");
+  robot.gyro = (IntegratingGyroscope)hardwareMap.get(ModernRoboticsI2cGyro.class, "gyro");
   ```
   
   #### Calibrate the gyro sensor:
   
   ```java
-  modernRoboticsI2cGyro.calibrate();
+  robot.modernRoboticsI2cGyro.calibrate();
   ```

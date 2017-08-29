@@ -54,10 +54,10 @@ while (condition is true){
 ```
 ###### NOTE: Put a semicolon after lines of code that are not the start or end of a block
 
-Wait x seconds:
+Wait t seconds:
 ``` java
 try {
-           TimeUnit.SECONDS.sleep(x);
+           TimeUnit.SECONDS.sleep(t);
        } catch (InterruptedException e) {
            e.printStackTrace();
        }

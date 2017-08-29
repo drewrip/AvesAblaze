@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 public class Autonomous_Template extends LinearOpMode {
 
     /* Declare OpMode members. */
-    HardwarePushbot         robot   = new HardwarePushbot();   // Use a Pushbot's hardware
+    HardwarePushbot         robot   = new HardwarePushbot1();   // Use a Pushbot's hardware
 
     //Make yourself some nice base variables right here
 

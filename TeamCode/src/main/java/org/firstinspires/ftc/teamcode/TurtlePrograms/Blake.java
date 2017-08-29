@@ -3,14 +3,14 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-@Autonomous(name="Autonumous_Template", group="Autonomous")
+@Autonomous(name="Blake", group="Autonomous")
 
-public class Autonomous_Template extends LinearOpMode {
+public class Blake extends LinearOpMode {
 
     /* Declare OpMode members. */
     HardwarePushbot         robot   = new HardwarePushbot();   // Use a Pushbot's hardware
 
-    //Make yourself some nice base variables right here
+    int bobby=robot.rightMotor.getCurrentPosition();
 
     @Override
     public void runOpMode() {
@@ -31,7 +31,7 @@ public class Autonomous_Template extends LinearOpMode {
        robot.leftMotor.setDirection(DcMotor.Direction.FORWARD);
        robot.leftMotor.setPower(1);
        robot.rightMotor.setPower(1);
-       while (opModeIsActive() && (robot.rightMotor.getCurrentPosition() < 2000)){
+       while (opModeIsActive() && (robot.rightMotor.getCurrentPosition() < bobby + 2000)){
        }
        robot.leftMotor.setPower(0);
        robot.rightMotor.setPower(0);

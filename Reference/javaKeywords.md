@@ -27,7 +27,7 @@
 
 ### Logic and Loops
 ```java
-if(condition to test \for){
+if(condition to test){
 	//do this
 }
 else{

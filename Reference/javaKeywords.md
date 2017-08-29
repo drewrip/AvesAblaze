@@ -27,7 +27,7 @@
 
 ### Logic and Loops
 ```java
-if(condition to test for){
+if(condition to test \for){
 	//do this
 }
 else{
@@ -49,7 +49,7 @@ while (condition is true){
 
 
 {
-	// this is a block
+    // this is a block
 }
 ```
 ###### NOTE: Put a semicolon after lines of code that are not the start or end of a block
@@ -63,5 +63,5 @@ try {
        }
 ```
 
-##### x++;   add one to the variable x
-##### x--; subtract one from the variable x
+#### x++;   add one to the variable x
+#### x--; subtract one from the variable x

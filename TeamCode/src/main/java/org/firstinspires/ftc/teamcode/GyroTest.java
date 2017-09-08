@@ -1,180 +1,110 @@
-package org.firstinspires.ftc.teamcode;
+/* Copyright (c) 2015 Qualcomm Technologies Inc
+
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification,
+are permitted (subject to the limitations in the disclaimer below) provided that
+the following conditions are met:
+
+Redistributions of source code must retain the above copyright notice, this list
+of conditions and the following disclaimer.
+
+Redistributions in binary form must reproduce the above copyright notice, this
+list of conditions and the following disclaimer in the documentation and/or
+other materials provided with the distribution.
+
+Neither the name of Qualcomm Technologies Inc nor the names of its contributors
+may be used to endorse or promote products derived from this software without
+specific prior written permission.
+
+NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE GRANTED BY THIS
+LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
+
+package org.firstinspires.ftc.robotcontroller.external.samples;
 
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cGyro;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.Gyroscope;
-import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.IntegratingGyroscope;
-import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.robotcore.hardware.GyroSensor;
 
-import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
-import org.firstinspires.ftc.robotcore.external.navigation.AngularVelocity;
-import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
-import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
+/*
+ * This is an example LinearOpMode that shows how to use
+ * the Modern Robotics Gyro.
+ *
+ * The op mode assumes that the gyro sensor
+ * is attached to a Device Interface Module I2C channel
+ * and is configured with a name of "gyro".
+ *
+ * Use Android Studio to Copy this Class, and Paste it into your team's code folder with a new name.
+ * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
+*/
+@TeleOp(name = "Sensor: MR Gyro", group = "Sensor")
+@Disabled
+public class SensorMRGyro extends LinearOpMode {
 
-@TeleOp(name = "GyroTest", group = "Pushbot")
-//@Disabled
-public class GyroTest extends LinearOpMode {
-    HardwarePushbot1 robot = new HardwarePushbot1();
+  @Override
+  public void runOpMode() {
 
+    ModernRoboticsI2cGyro gyro;   // Hardware Device Object
+    int xVal, yVal, zVal = 0;     // Gyro rate Values
+    int heading = 0;              // Gyro integrated heading
+    int angleZ = 0;
+    boolean lastResetState = false;
+    boolean curResetState  = false;
 
-    /* local OpMode members. */
-    private ElapsedTime period  = new ElapsedTime();
+    // get a reference to a Modern Robotics GyroSensor object.
+    gyro = (ModernRoboticsI2cGyro)hardwareMap.gyroSensor.get("gyro");
 
-    /* Initialize standard Hardware interfaces */
+    // start calibrating the gyro.
+    telemetry.addData(">", "Gyro Calibrating. Do Not move!");
+    telemetry.update();
+    gyro.calibrate();
 
-
-    /***
-     *
-     * waitForTick implements a periodic delay. However, this acts like a metronome with a regular
-     * periodic tick.  This is used to compensate for varying processing times for each cycle.
-     * The function looks at the elapsed cycle time, and sleeps for the remaining time interval.
-     *
-     * @param periodMs  Length of wait cycle in mSec.
-     */
-
-    IntegratingGyroscope gyro;
-    ModernRoboticsI2cGyro modernRoboticsI2cGyro;
-
-    // A timer helps provide feedback while calibration is taking place
-    ElapsedTime timer = new ElapsedTime();
-
-    @Override
-    public void runOpMode() {
-
-        boolean lastResetState = false;
-        boolean curResetState  = false;
-
-        // Get a reference to a Modern Robotics gyro object. We use several interfaces
-        // on this object to illustrate which interfaces support which functionality.
-        // If you're only interested int the IntegratingGyroscope interface, the following will suffice.
-        // gyro = hardwareMap.get(IntegratingGyroscope.class, "gyro");
-        // A similar approach will work for the Gyroscope interface, if that's all you need.
-        robot.init(hardwareMap);
-        // Start calibrating the gyro. This takes a few seconds and is worth performing
-        // during the initialization phase at the start of each opMode.
-        robot.gyro.calibrate();
-
-        // Wait until the gyro calibration is complete
-        timer.reset();
-        while (!isStopRequested() && robot.gyro.isCalibrating())  {
-            telemetry.addData("calibrating", "%s", Math.round(timer.seconds())%2==0 ? "|.." : "..|");
-            telemetry.update();
-            sleep(50);
-        }
-        telemetry.log().clear(); telemetry.log().add("Gyro Calibrated. Press Start.");
-        telemetry.clear(); telemetry.update();
-
-        // Wait for the start button to be pressed
-        waitForStart();
-        telemetry.log().clear();
-        telemetry.log().add("Press A & B to reset heading");
-
-        // Loop until we're asked to stop
-        while (opModeIsActive())  {
-            if(gamepad2.left_bumper){   //making left bumper move servo back
-                robot.collector.setPosition(0.18);
-            }
-            if(gamepad2.right_bumper){  //making right bumper move servo forward
-                robot.collector.setPosition(0.28);
-            }
-            if(gamepad1.left_bumper){   //making left bumper move servo back
-                robot.collector.setPosition(0.18);
-            }
-            if(gamepad1.right_bumper) { //Making right bumper move servo forward
-                robot.collector.setPosition(0.28);
-            }
-            if (gamepad2.x)  {  //makes "x" turn autobroom clockwise
-                robot.autobroom.setPower(-1);}
-
-            if (gamepad1.x) {   //makes "x" turn autobroom clockwise
-                robot.autobroom.setPower(-1);
-            }
-            if (gamepad2.a)  {  //makes "a" turn autobroom counter clockwise
-                robot.autobroom.setPower(1);
-            }
-
-            if (gamepad1.a) {   //makes "a" turn autobroom counter clockwise
-                robot.autobroom.setPower(1);
-            }
-            if (gamepad2.b)  {  //makes "b" turn off autobroom
-                robot.autobroom.setPower(0);
-            }
-
-            if (gamepad1.b) {   //makes "b" turn off autobroom
-                robot.autobroom.setPower(0);
-            }
-
-            if (gamepad2.y) {   //makes "y" shoot ball
-                robot.collector.setPosition(0.28);
-                robot.autobroom.setPower(1);
-            }
-            if (gamepad1.y) {   //makes "y" shoot ball
-                robot.collector.setPosition(0.28);
-                robot.autobroom.setPower(1);
-            }
-            double left=0;
-            double right=0;
-            left = -gamepad1.left_stick_y; //reset power values
-            right = -gamepad1.right_stick_y;
-
-            robot.rightMotor.setPower(right);   //sets power
-            robot.leftMotor.setPower(left);
-            // If the A and B buttons are pressed just now, reset Z heading.
-            curResetState = (gamepad1.a && gamepad1.b);
-            if (curResetState && !lastResetState) {
-                robot.gyro.resetZAxisIntegrator();
-            }
-            lastResetState = curResetState;
-
-            // The raw() methods report the angular rate of change about each of the
-            // three axes directly as reported by the underlying sensor IC.
-            int rawX = robot.gyro.rawX();
-            int rawY = robot.gyro.rawY();
-            int rawZ = robot.gyro.rawZ();
-            int heading = robot.gyro.getHeading();
-            int integratedZ = robot.gyro.getIntegratedZValue();
-
-            // Read dimensionalized data from the gyro. This gyro can report angular velocities
-            // about all three axes. Additionally, it internally integrates the Z axis to
-            // be able to report an absolute angular Z orientation.
-            AngularVelocity rates = robot.gyro.getAngularVelocity(AngleUnit.DEGREES);
-            float zAngle = robot.gyro.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES).firstAngle;
-
-            // Read administrative information from the gyro
-            int zAxisOffset = robot.gyro.getZAxisOffset();
-            int zAxisScalingCoefficient = robot.gyro.getZAxisScalingCoefficient();
-
-            telemetry.addLine()
-                    .addData("dx", formatRate(rates.xRotationRate))
-                    .addData("dy", formatRate(rates.yRotationRate))
-                    .addData("dz", "%s deg/s", formatRate(rates.zRotationRate));
-            telemetry.addData("angle", "%s deg", formatFloat(zAngle));
-            telemetry.addData("heading", "%3d deg", heading);
-            telemetry.addData("integrated Z", "%3d", integratedZ);
-            telemetry.addLine()
-                    .addData("rawX", formatRaw(rawX))
-                    .addData("rawY", formatRaw(rawY))
-                    .addData("rawZ", formatRaw(rawZ));
-            telemetry.addLine().addData("z offset", zAxisOffset).addData("z coeff", zAxisScalingCoefficient);
-            telemetry.update();
-        }
+    // make sure the gyro is calibrated.
+    while (!isStopRequested() && gyro.isCalibrating())  {
+      sleep(50);
+      idle();
     }
 
-    String formatRaw(int rawValue) {
-        return String.format("%d", rawValue);
-    }
+    telemetry.addData(">", "Gyro Calibrated.  Press Start.");
+    telemetry.update();
 
-    String formatRate(float rate) {
-        return String.format("%.3f", rate);
-    }
+    // wait for the start button to be pressed.
+    waitForStart();
 
-    String formatFloat(float rate) {
-        return String.format("%.3f", rate);
-    }
+    while (opModeIsActive())  {
 
+      // Reset the gyro sensor
+      gyro.resetZAxisIntegrator();
+      
+      // get the x, y, and z values (rate of change of angle).
+      xVal = gyro.rawX();
+      yVal = gyro.rawY();
+      zVal = gyro.rawZ();
+
+      // get the heading info.
+      // the Modern Robotics' gyro sensor keeps
+      // track of the current heading for the Z axis only.
+      heading = gyro.getHeading();
+      angleZ  = gyro.getIntegratedZValue();
+
+      telemetry.addData(">", "Press A & B to reset Heading.");
+      telemetry.addData("0", "Heading %03d", heading);
+      telemetry.addData("1", "Int. Ang. %03d", angleZ);
+      telemetry.addData("2", "X av. %03d", xVal);
+      telemetry.addData("3", "Y av. %03d", yVal);
+      telemetry.addData("4", "Z av. %03d", zVal);
+      telemetry.update();
+    }
+  }
 }

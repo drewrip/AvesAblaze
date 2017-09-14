@@ -76,9 +76,10 @@ public class ConceptVuMarkIdentification extends LinearOpMode {
      */
     VuforiaLocalizer vuforia;
 
+org.firstinspires.ftc.teamcode.TeamCode.HardwarePushbot1 robot   = new org.firstinspires.ftc.teamcode.TeamCode.HardwarePushbot1()
     @Override public void runOpMode() {
-
-        /*
+        robot.init(hardwareMap);
+          /*
          * To start up Vuforia, tell it the view that we wish to use for camera monitor (on the RC phone);
          * If no camera monitor is desired, use the parameterless constructor instead (commented out below).
          */

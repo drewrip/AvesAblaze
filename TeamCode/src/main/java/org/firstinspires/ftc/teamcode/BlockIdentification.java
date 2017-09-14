@@ -46,7 +46,23 @@ public class Tele-op_Template extends LinearOpMode {
          * The init() method of the hardware class does all the work here
          */
         robot.init(hardwareMap);
-
+    if (context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)){
+        // this device has a camera
+          Camera c = null;
+    try {
+        c = Camera.open(); // attempt to get a Camera instance
+    }
+    catch (Exception e){
+        // Camera is not available (in use or does not exist)
+    }
+    return c; // returns null if camera is unavailable
+}  
+    } else {
+        // no camera on this device
+        
+    }
+    
+        
         // Send telemetry message to signify robot waiting;
         telemetry.addData("Say", "Hi, I'm not completely broken yet!!");    //
         telemetry.update();
@@ -58,7 +74,9 @@ public class Tele-op_Template extends LinearOpMode {
         while (opModeIsActive()) {
 
             if(gamepad1.a){
-              
+                
+                c.super.onPause();
+                c.release();
             }
         }
     }

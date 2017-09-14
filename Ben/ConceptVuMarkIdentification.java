@@ -65,15 +65,6 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
  * is explained below.
  */
   /*
-         * IMPORTANT: You need to obtain your own license key to use Vuforia. The string below with which
-         * 'parameters.vuforiaLicenseKey' is initialized is for illustration only, and will not function.
-         * A Vuforia 'Development' license key, can be obtained free of charge from the Vuforia developer
-         * web site at https://developer.vuforia.com/license-manager email:avesablaze@gmail.com password: AdamPelberg1
-         Delete the username and password from this document after you get the license key.
-         *
-         * Vuforia license keys are always 380 characters long, and look as if they contain mostly
-         * random data. As an example, here is a example of a fragment of a valid key:
-         *      ... yIgIzTqZ4mWjk9wd3cZO9T1axEqzuhxoGlfOOI2dRzKS4T0hQ8kT ...
 
 @Autonomous(name="Concept: VuMark Id", group ="Concept")
 @Disabled
@@ -101,19 +92,7 @@ public class ConceptVuMarkIdentification extends LinearOpMode {
         // OR...  Do Not Activate the Camera Monitor View, to save power
         // VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
 
-        /*
-         * IMPORTANT: You need to obtain your own license key to use Vuforia. The string below with which
-         * 'parameters.vuforiaLicenseKey' is initialized is for illustration only, and will not function.
-         * A Vuforia 'Development' license key, can be obtained free of charge from the Vuforia developer
-         * web site at https://developer.vuforia.com/license-manager.
-         *
-         * Vuforia license keys are always 380 characters long, and look as if they contain mostly
-         * random data. As an example, here is a example of a fragment of a valid key:
-         *      ... yIgIzTqZ4mWjk9wd3cZO9T1axEqzuhxoGlfOOI2dRzKS4T0hQ8kT ...
-         * Once you've obtained a license key, copy the string from the Vuforia web site
-         * and paste it in to your code onthe next line, between the double quotes.
-         */
-        parameters.vuforiaLicenseKey = "ATsODcD/////AAAAAVw2lR...d45oGpdljdOh5LuFB9nDNfckoxb8COxKSFX";
+        parameters.vuforiaLicenseKey = "AZAl2yL/////AAAAGZv0GR8P7kmlnRgBIvY0W4R/k2Z0S418H/B/KaeG0v60g60+2z2cscF41nNQsBzDyQHs6VEPWU+LXzm5PMbei+w12AWEqRyc97TSHbpEmf1Z/kEm3+eDlkUwR1aatC6SJPwAka6uM074PZBm/RiQt7n547/CrFeMYb2dasW1p9BNOt8k4xIaS2jCoyQ/WBQsCJpO+5bfS3KiEI9lx83HYBUMo6pWuQIegavF8pRBm631yQs1CEn88iKNT0Y5CVFaf0nR3sF/BTfpyLlPDrroUt32QvHEN2y5Ana8TmX5gzmS3R61bbPQtTi5wPVN5Y3e2N2tu4cgd2H+FrXbPucVCyafF8BGx5RSBIYBC49bkEE2";
 
         /*
          * We also indicate which camera on the RC that we wish to use.

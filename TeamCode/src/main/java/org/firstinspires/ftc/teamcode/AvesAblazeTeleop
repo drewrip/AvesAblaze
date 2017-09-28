@@ -1,0 +1,72 @@
+package org.firstinspires.ftc.teamcode;
+
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+
+@Autonomous(name="Autonumous_Template", group="Autonomous")
+
+public class Autonomous_Template extends LinearOpMode {
+
+    /* Declare OpMode members. */
+    HardwarePushbot1         robot   = new HardwarePushbot1();   // Use a Pushbot's hardware
+
+    //Make yourself some nice base variables right here
+
+    @Override
+    public void runOpMode() {
+
+        //Or here
+        robot.init(hardwareMap);
+
+        // Send telemetry message to signify robot waiting;
+        telemetry.addData("Status", "Guess who seems to be working as of now!!");    //
+        telemetry.update();
+
+        // Wait for the game to start (driver presses PLAY)
+        waitForStart();
+        if(gamepad1.right_stick_y==1){
+        //move forward
+        robot.leftFront.setPower(1);
+        robot.leftBack.setPower(1);
+        robot.rightFront.setPower(1);
+        robot.rightBack.setPower(1);          
+        }
+        if(gamepad1.right_stick_y==-1){
+        //move backward
+        robot.leftFront.setPower(-1);
+        robot.leftBack.setPower(-1);
+        robot.rightFront.setPower(-1);
+        robot.rightBack.setPower(-1);        
+        }
+        if(gamepad1.right_stick_x==1){
+        //turn right
+        robot.leftFront.setPower(-1);
+        robot.leftBack.setPower(-1);
+        robot.rightFront.setPower(1);
+        robot.rightBack.setPower(1);        
+        }
+        if(gamepad1.right_stick_x==-1){
+        //turn left
+        robot.leftFront.setPower(1);
+        robot.leftBack.setPower(1);         
+        robot.rightFront.setPower(-1);
+        robot.rightBack.setPower(-1);       
+        }
+        if(gamepad1.left_stick_x==1){
+        //move right
+        robot.leftFront.setPower(1);
+        robot.leftBack.setPower(-1);         
+        robot.rightFront.setPower(1);
+        robot.rightBack.setPower(-1);        
+        }
+        if(gamepad1.left_stick_x==-1){
+        //move left
+        robot.leftFront.setPower(-1);
+        robot.leftBack.setPower(1);         
+        robot.rightFront.setPower(-1);
+        robot.rightBack.setPower(1);        
+        }        
+        
+       //Put your nice fancy codies here
+    }
+}

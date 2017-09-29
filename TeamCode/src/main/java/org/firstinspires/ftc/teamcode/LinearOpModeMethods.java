@@ -21,13 +21,7 @@ public class LinearOpModeMethods extends LinearOpMode {
     public void runOpMode(){
 
     }
-    public void stopRobot(){
-        robot.leftFront.setPower(0);
-        robot.rightFront.setPower(0);
-        robot.leftBack.setPower(0);
-        robot.rightBack.setPower(0);
-    }
-    public double w1(double degrees, double velocity, boolean isTurning){
+    public double drive(double degrees, double velocity, boolean isTurning, int w){
         double rad = Math.toRadians(degrees);
         double arc;
         if(isTurning){
@@ -38,50 +32,18 @@ public class LinearOpModeMethods extends LinearOpMode {
             arc = 0;
         }
         double d = 9+(9*Math.sqrt(3));
-        double w1 = Math.sin(rad) - Math.cos(rad) + d;
-        return w1;
+        double w0 = Math.sin(rad) - Math.cos(rad) + d;
+        double w1 = Math.sin(rad) + Math.cos(rad) - d;
+        double w2 = Math.sin(rad) - Math.cos(rad) - d;
+        double w3 = Math.sin(rad) + Math.cos(rad) + d;
+        switch(w){
+            case 0: return w0;
+            case 1: return w1;
+            case 2: return w2;
+            case 3: return w3;
+            default: return 0;
+        }
     }
-    public double w2(double degrees, double velocity, boolean isTurning){
-        double rad = Math.toRadians(degrees);
-        double arc;
-        if(isTurning){
-            arc = rad;
-            rad = 0;
-        }
-        else{
-            arc = 0;
-        }
-        double d = 9+(9*Math.sqrt(3));
-        double w2 = Math.sin(rad) + Math.cos(rad) - d;
-        return w2;
-    }
-    public double w3(double degrees, double velocity, boolean isTurning){
-        double rad = Math.toRadians(degrees);
-        double arc;
-        if(isTurning){
-            arc = rad;
-            rad = 0;
-        }
-        else{
-            arc = 0;
-        }
-        double d = 9+(9*Math.sqrt(3));
-        double w3 = Math.sin(rad) - Math.cos(rad) - d;
-        return w3;
-    }
-    public double w4(double degrees, double velocity, boolean isTurning){
-        double rad = Math.toRadians(degrees);
-        double arc;
-        if(isTurning){
-            arc = rad;
-            rad = 0;
-        }
-        else{
-            arc = 0;
-        }
-        double d = 9+(9*Math.sqrt(3));
-        double w4 = Math.sin(rad) + Math.cos(rad) + d;
-        return w4;
-    }
+
 
 }

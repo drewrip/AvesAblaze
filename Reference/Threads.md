@@ -1,7 +1,7 @@
 # Threads
 ### 1. Creating an inner class
 ```java
-private class "classname" extends Thread{
+private class "Classname" extends Thread{
 
 }
 ```

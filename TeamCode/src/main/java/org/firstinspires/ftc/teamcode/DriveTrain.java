@@ -18,4 +18,21 @@ public class DriveTrain {
         lf=leftFront;
         rf=rightFront;
     }
+    
+    public void drive(double angle, double speed){
+        double rad = (angle/180)*Math.PI;
+        double wheelSpeeds[] = new double[4];
+        double sinRad = Math.sin(rad);
+        double cosRad = Math.cos(rad);
+        wheelSpeeds[0] = (speed * sinRad) + ;
+        wheelSpeeds[1] = speed * cosRad;
+        wheelSpeeds[2] = speed * -cosDir;
+        wheelSpeeds[3] = speed * -sinDir;
+        
+        lb.setPower(wheelSpeeds[0]);
+        lf.setPower(wheelSpeeds[1]);
+        rb.setPower(wheelSpeeds[2]);
+        rf.setPower(wheelSpeeds[3]);
+        
+    }
 }

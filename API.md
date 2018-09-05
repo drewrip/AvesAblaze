@@ -24,3 +24,16 @@ motor0= setMotor("motor0");
  ```java
  ModernRoboticsColor color=(ModernRoboticsColor) easySet(ModernRoboticsColor.class, "color");
  ```
+### Driving the robot
+1. Assign the drive motors to the robot under the names motor0 and motor1 
+1. Call the drive method (shown below)
+1. The number (parameter) is distance in encoder units
+``` java
+drive(500); //drive 500 encoder units
+```
+###Turning the robot
+1. Assign the drive motors to the robot under the names motor0 and motor1
+1. Call the turn method (shown below)
+1. The number (parameter) is the degrees that you want the robot to turn
+```java
+turn(90); //turn 90 degrees

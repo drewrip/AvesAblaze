@@ -18,7 +18,7 @@ motor0= setMotor("motor0");
  ```
  ### Assigning another object to the robot
  #### Before using any hardware it must be assigned
- 1. Enter the Hardware file (HardwarePushbot
+ 1. Enter the Hardware file (HardwarePushbot)
  1. Use the set method to add your object
  1. The name in quotes must be identical to the name of the object in the configuration
  ```java
